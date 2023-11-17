@@ -69,7 +69,7 @@ def process_line(line,model,config):
 
 
 @app.websocket("french/ws/zip")
-async def websocket_endpoint(websocket, path):
+async def zip_fr(websocket, path):
 
     # Handle incoming messages from clients
     while True:
@@ -112,7 +112,7 @@ async def websocket_endpoint(websocket, path):
 
 
 @app.websocket("english/ws/zip")
-async def websocket_endpoint(websocket, path):
+async def zip_eng(websocket, path):
 
     # Handle incoming messages from clients
     while True:
@@ -155,7 +155,7 @@ async def websocket_endpoint(websocket, path):
 
 
 @app.websocket("/french/ws/text")
-async def websocket_endpoint(websocket, path):
+async def fr_endpoint(websocket, path):
 
     # Initialize model and parameters
     hps = utils.get_hparams_from_file("configs/mlb_french.json")
@@ -198,7 +198,7 @@ async def websocket_endpoint(websocket, path):
 
 
 @app.websocket("/english/ws/text")
-async def websocket_endpoint(websocket, path):
+async def eng_endpoint(websocket, path):
 
     # Initialize model and parameters
     hps = utils.get_hparams_from_file("configs/ljs_base.json")
