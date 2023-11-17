@@ -17,6 +17,8 @@ from unidecode import unidecode
 from phonemizer import phonemize
 from .numbers import normalize_numbers
 from cvutils import Phonemiser
+from gruut import sentences
+
 
 # Regular expression matching whitespace:
 _whitespace_re = re.compile(r"\s+")
@@ -120,3 +122,18 @@ def kinyarwanda_cleaner(text):
     phonemes = " ".join(phonemes)
     # print(f'Text: {text} ---> Phoneme: {phonemes} ',end='\r')
     return phonemes
+
+def french_cleaner(text):
+
+
+    phoneme_sentence = []
+
+    for sent in sentences(text, lang="fr-fr"):
+        for word in sent:
+            if word.phonemes:
+                phoneme_sentence.extend(word.phonemes)
+            phoneme_sentence.extend(" ")
+
+
+    phoneme = "".join(phoneme_sentence).strip()
+    phoneme = phoneme.replace("|","*")

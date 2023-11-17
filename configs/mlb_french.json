@@ -19,7 +19,7 @@
   "data": {
     "training_files": "filelists/ezwa2_audio_text_train_filelist.txt.cleaned",
     "validation_files": "filelists/ezwa2_audio_text_test_filelist.txt.cleaned",
-    "text_cleaners": ["french_cleaners"],
+    "text_cleaners": ["french_cleaner"],
     "bits_per_sample": 16,
     "sampling_rate": 22050,
     "filter_length": 1024,
