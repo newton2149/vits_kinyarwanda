@@ -158,7 +158,7 @@ async def zip_eng(websocket, path):
 async def fr_endpoint(websocket, path):
 
     # Initialize model and parameters
-    hps = utils.get_hparams_from_file("configs/mlb_french.json")
+    hps = utils.get_hparams_from_file(FRENCH_CONFIG)
     net_g = SynthesizerTrn(
         len(symbols),
         hps.data.filter_length // 2 + 1,
@@ -166,7 +166,7 @@ async def fr_endpoint(websocket, path):
         **hps.model
     ).cuda()
     _ = net_g.eval()
-    _ = utils.load_checkpoint("G_69000.pth", net_g, None)
+    _ = utils.load_checkpoint(FRENCH_MODEL, net_g, None)
 
     # Handle incoming messages from clients
     while True:
@@ -201,7 +201,7 @@ async def fr_endpoint(websocket, path):
 async def eng_endpoint(websocket, path):
 
     # Initialize model and parameters
-    hps = utils.get_hparams_from_file("configs/ljs_base.json")
+    hps = utils.get_hparams_from_file(ENGLISH_CONFIG)
     net_g = SynthesizerTrn(
         len(symbols),
         hps.data.filter_length // 2 + 1,
@@ -209,7 +209,7 @@ async def eng_endpoint(websocket, path):
         **hps.model
     ).cuda()
     _ = net_g.eval()
-    _ = utils.load_checkpoint("G_69000.pth", net_g, None)
+    _ = utils.load_checkpoint(ENGLISH_MODEL, net_g, None)
 
     while True:
         try:
